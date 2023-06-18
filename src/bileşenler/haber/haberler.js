@@ -115,3 +115,49 @@ const data = [
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
+
+const articlesDiv = document.querySelector(".articles");
+
+data.forEach((haberVeri) => {
+  const articleDiv = haberYap(haberVeri);
+  articlesDiv.appendChild(articleDiv);
+});
+
+function haberYap(haberVeri) {
+  const divEl = document.createElement("div");
+  divEl.classList.add("article");
+
+  const h2El = document.createElement("h2");
+  h2El.textContent = haberVeri.baslik;
+  divEl.appendChild(h2El);
+
+  const tarihEl = document.createElement("p");
+  tarihEl.classList.add("tarih");
+  tarihEl.textContent = haberVeri.tarih;
+  divEl.appendChild(tarihEl);
+
+  const parag1 = document.createElement("p");
+  parag1.classList.add("ilkParagraf");
+  parag1.textContent = haberVeri.ilkParagraf;
+  divEl.appendChild(parag1);
+
+  const parag2 = document.createElement("p");
+  parag2.classList.add("ikinciParagraf");
+  parag2.textContent = haberVeri.ikinciParagraf;
+  divEl.appendChild(parag2);
+
+  const parag3 = document.createElement("p");
+  parag3.classList.add("ucuncuParagraf");
+  parag3.textContent = haberVeri.ucuncuParagraf;
+  divEl.appendChild(parag3);
+
+  const spanEl = document.createElement("span");
+  spanEl.classList.add("expandButton");
+  spanEl.textContent = "+";
+  spanEl.addEventListener("click",function() {
+    divEl.classList.toggle("article-open");
+  });
+  divEl.appendChild(spanEl);
+  return divEl;
+
+}
